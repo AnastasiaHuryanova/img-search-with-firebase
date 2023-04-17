@@ -2,18 +2,31 @@ import "./App.css";
 import Card from "./components/Card";
 import photos from "../data";
 import Navbar from "./components/Navbar/Navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UploadForm from "./components/UploadForm";
 
 function App() {
-  const [input, setInput] = useState();
+  const [count, setCount] = useState();
+  const [inputs, setInputs] = useState({ title: null, file: null, path: null });
   const [items, setItems] = useState(photos);
   const [isCollapsed, collapse] = useState(false);
-  const handleOnChange = (e) => setInput(e.target.value);
+  const handleOnChange = (e) => {
+    e.target.name === "file"
+      ? setInputs({
+          ...inputs,
+          file: e.target.files[0],
+          path: URL.createObjectURL(e.target.files[0]),
+        })
+      : setInputs({ ...inputs, title: e.target.value });
+  };
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    setItems([input, ...items]);
+    setItems([inputs.path, ...items]);
   };
+
+  useEffect(() => {
+    setCount(`you have ${items.length} image${items.length === 1 ? "" : "s"}`);
+  }, [items]);
 
   const toggle = () => {
     collapse(!isCollapsed);
@@ -31,6 +44,7 @@ function App() {
           onChange={handleOnChange}
           onSubmit={handleOnSubmit}
         ></UploadForm>
+        {count}
         <h1>Gallery</h1>
         <div className="row">
           {items.map((photo, index) => (
