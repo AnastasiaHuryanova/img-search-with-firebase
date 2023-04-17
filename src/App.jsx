@@ -1,7 +1,7 @@
 import "./App.css";
 import Card from "./components/Card";
-import Navbar from "./components/Navbar";
 import photos from "../data";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
