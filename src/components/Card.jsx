@@ -1,15 +1,10 @@
-const Card = (props) => {
-  return (
-    <div className="col mb-5">
-      <div className="card" style={{ width: "18rem" }}>
-        <img
-          src={props.path}
-          className="card-img-top"
-          alt={props.title}
-        />
+function Card({ path, title}) {
+  return(
+      <div className="col mb-5">
+          <div className="card" style={{width: "18rem"}}>
+              <img src={path} className="card-img-top" alt={title} />
+          </div>
       </div>
-    </div>
-  );
-};
-
+  )
+}
 export default Card;
