@@ -3,9 +3,9 @@ const Card = (props) => {
     <div className="col mb-5">
       <div className="card" style={{ width: "18rem" }}>
         <img
-          src={props.src}
+          src={props.path}
           className="card-img-top"
-          alt={props.src}
+          alt={props.title}
         />
       </div>
     </div>
