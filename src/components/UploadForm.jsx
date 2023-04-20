@@ -1,9 +1,16 @@
+import { useMemo } from "react";
+import Preview from "./Preview";
+
 const UploadForm = (props) => {
+  const isDisabled = useMemo(()=>{
+    return !!Object.values(props.inputs).some(input => !input )
+  },[props.inputs])
   return (
     props.isVisible && (
       <>
         <p className="display-6 text-center mb-3">Upload Stock Image</p>
         <div className="mb-5 d-flex align-items-center justify-content-center">
+          <Preview {...props.inputs}/>
           <form
             className="mb-2"
             style={{ textAlign: "left" }}
@@ -27,7 +34,7 @@ const UploadForm = (props) => {
                 onChange={props.onChange}
               />
             </div>
-            <button type="submit" className="btn btn-success float-end">
+            <button type="submit" className="btn btn-success float-end" disabled={isDisabled}>
               Save changes
             </button>
           </form>
