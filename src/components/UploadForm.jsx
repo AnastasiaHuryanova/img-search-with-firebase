@@ -1,5 +1,8 @@
 import { useMemo,  useContext } from "react"
 import { Context } from "../context"
+import { Firestore } from "firebase/firestore";
+const {} = Firestore
+
 const Preview = () => {
   const { state } = useContext(Context)
   const { inputs : { path } } = state  // destructuring the current state
